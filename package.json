@@ -1,21 +1,19 @@
 {
-  "name": "electron-quick-start",
+  "name": "travis-ci-electron",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Small Electron prototype for Travis CI",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/lislis/travis-ci-electron",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Travis CI",
+    "prototype"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "lislis",
+  "license": "MIT",
   "devDependencies": {
     "electron": "~1.6.2"
   }
