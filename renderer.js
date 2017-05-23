@@ -16,6 +16,7 @@ window.addEventListener('load', function () {
 
       document.querySelector('.accounts li.mozilla').addEventListener('click', function (ev) {
         document.querySelector('.repos ul').innerHTML = "";
+        document.querySelector('.active ul').innerHTML = "";
 
         fetch('https://api.travis-ci.org/v3/owner/mozilla/repos?active=true&include=repository.current_build')
           .then(response => {
@@ -41,6 +42,25 @@ ${el.default_branch.name}</p>`;
             });
 
           });
+        fetch('https://api.travis-ci.org/v3/owner/mozilla/active')
+          .then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              console.log('some error');
+            }})
+          .then(data => {
+            console.log(data);
+            data.builds.forEach(function (el) {
+              let li = document.createElement('li');
+              li.className = `${el.state}`;
+              li.innerHTML = `
+<h3>${el.number} ${el.state} ${el.branch.name}</h3>
+<p>${el.commit.message}</p>`;
+              document.querySelector('.active ul').appendChild(li);
+            });
+
+          });
       });
     });
 
@@ -63,6 +83,7 @@ ${el.default_branch.name}</p>`;
 
       document.querySelector('.accounts li.travis').addEventListener('click', function (ev) {
         document.querySelector('.repos ul').innerHTML = "";
+        document.querySelector('.active ul').innerHTML = "";
 
         fetch('https://api.travis-ci.org/v3/owner/travis-ci/repos?active=true&include=repository.current_build')
           .then(response => {
@@ -86,7 +107,30 @@ ${event}
 ${el.default_branch.name}</p>`;
               document.querySelector('.repos ul').appendChild(li);
             });
-          })
+          });
+
+        fetch('https://api.travis-ci.org/v3/owner/travis-ci/active')
+          .then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              console.log('some error');
+            }})
+          .then(data => {
+            console.log(data);
+            data.builds.forEach(function (el) {
+              let id = el.current_build ? el.current_build.number : '';
+              let state = el.current_build ? el.current_build.state : '';
+              let event = el.current_build ? el.current_build.event_type : '';
+              let li = document.createElement('li');
+              li.className = `${el.state}`;
+              li.innerHTML = `
+<h3>${el.number} ${el.state} ${el.branch.name}</h3>
+<p>${el.commit.message}</p>`;;
+              document.querySelector('.active ul').appendChild(li);
+            });
+
+          });
       });
     });
 

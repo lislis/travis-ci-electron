@@ -5,6 +5,13 @@ html,
 body {
   padding: 0;
   margin: 0;
+  font-family: Source Sans Pro, Arial, sans-serif;
+  font-weight: 200;
+  color: #666;
+}
+
+h1, h2, h3 {
+  font-weight: 200;
 }
 
 .wrapper {
@@ -13,20 +20,23 @@ body {
 }
 
 .accounts {
-  background-color: green;
-  padding: 1em;
-  flex: 0 0 11%
+  background-color: #A39D9D;
+  padding: .5em;
+  flex: 0 0 90px;
 }
 
 .active {
-  background-color: pink;
-  flex: 0 0 45%
+  background-color: #f1f1f1;
+  flex: 1 0 45%;
+  padding: .5em 1em;
+  overflow: scroll;
 }
 
 .repos {
-  background-color: teal;
-  flex: 0 0 45%;
+  background-color: white;
+  flex: 1 0 45%;
   overflow: scroll;
+  padding: .5em 1em;
 }
 
 
@@ -35,20 +45,61 @@ ul {
   padding: 0;
 }
 
+.accounts ul {
+  text-align: center;
+}
+
 .accounts ul p {
-  margin-top: 0;
+  margin: 0;
 }
 
 .accounts a {
   display: block;
+  padding: .5em;
+  border-radius: 4px;
+  color: #666;
 }
 
 .accounts ul li {
   margin-bottom: 2em;
 }
 
+.accounts ul a:hover {
+  background-color: #3EACC3;
+  color: white;
+}
+
 .accounts ul li img {
   width: 50px;
   height: auto;
   border-radius: 4px;
+}
+
+.repos li {
+  border-left: 4px solid #f1f1f1;
+  padding-left: 0.8em;
+}
+
+.repos li.passed {
+  border-color: forestgreen;
+}
+
+.repos li.errored,
+.repos li.failed {
+  border-color: firebrick;
+}
+
+.repos li.started {
+  border-color: gold;
+}
+
+.active h3,
+.active p {
+  margin: 0;
+}
+
+.active li {
+  margin-bottom: 2em;
+  border-left: 4px solid gold;
+  padding-left: 0.8em;
 }
